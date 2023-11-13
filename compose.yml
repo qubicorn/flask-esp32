@@ -1,7 +1,14 @@
 services:
+  #web:
+  #  image: nginx
+  #  volumes:
+  #    - ./static:/usr/share/nginx/html
+  #  ports:
+  #    - "8032:80"
   web:
-    image: nginx
-    volumes:
-      - ./static:/usr/share/nginx/html
+    build:
+      context: app
+        #target: builder
+    stop_signal: SIGINT
     ports:
-      - "8032:80"
+      - '8032:8000'
