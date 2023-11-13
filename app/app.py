@@ -7,15 +7,15 @@ def write():
     rows = ['='.join(item) for item in request.form.items()]
     s_post_data = '\n'.join(rows)
     with open("post.log", "a") as f_log:
-        f_log.write(str(len(rows)))
         f_log.writelines(s_post_data)
-    return s_post_data + '\n'
+        f_log.write("\n")
+    return s_post_data
 
 @app.route('/log')
 def log():
     try:
         with open("post.log", "r") as f_log:
-            return f_log.read() + '\n'
+            return f_log.read()
     except FileNotFoundError:
         return ''
 
